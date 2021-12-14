@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Treatment</string>
+    <string name="button_addTreatment">Add Treatment</string>
+    <string name="button_deleteTreatment">Delete Treatment</string>
+    <string name="hint_treatmentId">Treatment ID </string>
+    <string name="hint_tagNumber">Animal Tag Number</string>
+    <string name="hint_treatmentName">Treatment Name </string>
+    <string name="hint_treatmentAmount">Dosage </string>
+    <string name="hint_withdrawal">Withdrawal Period </string>
+    <string name="menu_addTreatment">Add</string>
+    <string name="menu_cancelTreatment">Cancel</string>
+</resources>

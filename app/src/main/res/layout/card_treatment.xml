@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:elevation="24dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="167dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/treatmentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            tools:text="A name" />
+
+        <TextView
+            android:id="@+id/treatmentId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="119dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="30dp"
+            android:layout_toRightOf="@+id/treatmentName"
+            tools:text="A ID" />
+
+        <TextView
+            android:id="@+id/tagNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/treatmentName"
+            android:layout_alignParentLeft="true"
+            tools:text="A Tagnumber" />
+
+        <TextView
+            android:id="@+id/treatmentAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tagNumber"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/withdrawal"
+            tools:text="Amount" />
+
+        <TextView
+            android:id="@+id/withdrawal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tagNumber"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="72dp"
+            android:layout_marginRight="19dp"
+            tools:text="A withdrawal" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
