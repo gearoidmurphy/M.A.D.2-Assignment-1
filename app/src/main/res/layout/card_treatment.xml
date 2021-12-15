@@ -1,68 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:elevation="24dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="167dp"
+        android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/treatmentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:textSize="30sp"
-            tools:text="A name" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="-17dp"
+            tools:layout_editor_absoluteY="-15dp">
 
-        <TextView
-            android:id="@+id/treatmentId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="119dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="30dp"
-            android:layout_toRightOf="@+id/treatmentName"
-            tools:text="A ID" />
+            <ImageView
+                android:id="@+id/imageIcon"
+                android:layout_width="71dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/change_treatment_image" />
 
-        <TextView
-            android:id="@+id/tagNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/treatmentName"
-            android:layout_alignParentLeft="true"
-            tools:text="A Tagnumber" />
+            <TextView
+                android:id="@+id/treatmentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textSize="30sp"
+                tools:text="A name" />
 
-        <TextView
-            android:id="@+id/treatmentAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tagNumber"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/withdrawal"
-            tools:text="Amount" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/withdrawal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tagNumber"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="72dp"
-            android:layout_marginRight="19dp"
-            tools:text="A withdrawal" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tag Number: " />
+
+                <TextView
+                    android:id="@+id/tagNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/treatmentName"
+                    android:layout_alignParentLeft="true"
+                    tools:text="A Tagnumber" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Withdrawal Period: " />
+
+                <TextView
+                    android:id="@+id/withdrawal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tagNumber"
+                    tools:text="A withdrawal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dosage: " />
+
+                <TextView
+                    android:id="@+id/treatmentAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tagNumber"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/withdrawal"
+                    tools:text="Amount" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
+
