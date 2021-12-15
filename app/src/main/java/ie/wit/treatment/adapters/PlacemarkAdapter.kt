@@ -3,6 +3,7 @@ package ie.wit.treatment.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ie.wit.treatment.databinding.CardTreatmentBinding
 import ie.wit.treatment.models.treatmentModel
 
@@ -30,11 +31,11 @@ class treatmentAdapter constructor(private var treatments: List<treatmentModel>,
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(treatment: treatmentModel, listener: treatmentListener) {
-            binding.treatmentId.text = treatment.id
             binding.treatmentName.text = treatment.treatmentName
             binding.tagNumber.text = treatment.tagNumber.toString()
             binding.treatmentAmount.text = treatment.amount.toString()
             binding.withdrawal.text = treatment.withdarwal.toString()
+            Picasso.get().load(treatment.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.ontreatmentClick(treatment) }
 
         }

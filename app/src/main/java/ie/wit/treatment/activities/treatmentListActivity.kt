@@ -35,6 +35,10 @@ class treatmentListActivity : AppCompatActivity(), treatmentListener {
 //        cardbinding.btnDelete.setOnClickListener(){
 //            onbttnDeleteClick(cardbinding.treatmentId.text.toString().toInt())
 //        }
+        binding.searchBtn.setOnClickListener {
+            binding.recyclerView.adapter = treatmentAdapter(app.treatments.findByName(binding.searchText.text.toString()),this)
+            binding.recyclerView.adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,6 +61,11 @@ class treatmentListActivity : AppCompatActivity(), treatmentListener {
         val launcherIntent = Intent(this, treatmentActivity::class.java)
         launcherIntent.putExtra("treatment_edit", treatment)
         startActivityForResult(launcherIntent,0)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        binding.recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 

@@ -9,4 +9,9 @@
     <string name="hint_withdrawal">Withdrawal Period </string>
     <string name="menu_addTreatment">Add</string>
     <string name="menu_cancelTreatment">Cancel</string>
+    <string name="enter_treatment_title"> Please enter a Tag Number </string>
+    <string name="save_treatment"> Save treatment </string>
+    <string name="button_addImage"> Add Image </string>
+    <string name="select_treatment_image">Select treatment image</string>
+    <string name="change_treatment_image">Change treatment image</string>
 </resources>
