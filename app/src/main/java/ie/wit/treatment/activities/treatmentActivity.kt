@@ -14,6 +14,7 @@ import ie.wit.treatment.R
 import ie.wit.treatment.databinding.ActivityTreatmentBinding
 import ie.wit.treatment.helpers.showImagePicker
 import ie.wit.treatment.main.MainApp
+import ie.wit.treatment.models.Location
 import ie.wit.treatment.models.treatmentModel
 import timber.log.Timber.i
 
@@ -21,7 +22,9 @@ class treatmentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTreatmentBinding
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     var treatment = treatmentModel()
+    //var location = Location(52.245696, -7.139102, 15f)
     lateinit var app: MainApp
 
 
@@ -79,8 +82,24 @@ class treatmentActivity : AppCompatActivity() {
 
         binding.btnDelete.setOnClickListener(){
             app.treatments.delete(treatment.copy())
+            i("Delete Button Pressed: $treatment")
+            setResult(RESULT_OK)
+            finish()
+        }
+
+        binding.treatmentLocation.setOnClickListener {
+            val location = Location(52.245696, -7.139102, 15f)
+            if (treatment.zoom != 0f) {
+                location.lat =  treatment.lat
+                location.lng = treatment.lng
+                location.zoom = treatment.zoom
+            }
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
         }
         registerImagePickerCallback()
+        registerMapCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,6 +130,26 @@ class treatmentActivity : AppCompatActivity() {
                     }
                     RESULT_CANCELED -> { } else -> { }
                 }
+            }
+    }
+
+    private fun registerMapCallback() {
+         mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+                { result ->
+                    when (result.resultCode) {
+                        RESULT_OK -> {
+                            if (result.data != null) {
+                                i("Got Location ${result.data.toString()}")
+                                val location = result.data!!.extras?.getParcelable<Location>("location")!!
+                                i("Location == $location")
+                                treatment.lat = location.lat
+                                treatment.lng = location.lng
+                                treatment.zoom = location.zoom
+                            } // end of if
+                        }
+                        RESULT_CANCELED -> { } else -> { }
+                    }
             }
     }
 

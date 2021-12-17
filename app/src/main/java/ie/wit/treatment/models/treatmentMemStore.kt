@@ -45,6 +45,9 @@ class treatmentMemStore : treatmentStore {
             foundtreatment.withdarwal = treatment.withdarwal
             foundtreatment.amount = treatment.amount
             foundtreatment.image = treatment.image
+            foundtreatment.lat = treatment.lat
+            foundtreatment.lng = treatment.lng
+            foundtreatment.zoom = treatment.zoom
             logAll()
         }
     }

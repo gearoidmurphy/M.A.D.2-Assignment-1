@@ -14,4 +14,9 @@
     <string name="button_addImage"> Add Image </string>
     <string name="select_treatment_image">Select treatment image</string>
     <string name="change_treatment_image">Change treatment image</string>
+    <string name="button_location">Set Location</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="navDraw">All Map Entrys</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>
