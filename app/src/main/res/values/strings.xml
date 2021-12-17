@@ -16,7 +16,9 @@
     <string name="change_treatment_image">Change treatment image</string>
     <string name="button_location">Set Location</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_allMaps">MapActivity</string>
     <string name="navDraw">All Map Entrys</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="choose_theme_text">choose theme</string>
 </resources>

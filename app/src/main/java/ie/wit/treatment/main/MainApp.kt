@@ -1,6 +1,7 @@
 package ie.wit.treatment.main
 
 import android.app.Application
+import ie.wit.treatment.models.treatmentFirebaseStore
 import ie.wit.treatment.models.treatmentJSONStore
 import ie.wit.treatment.models.treatmentModel
 import ie.wit.treatment.models.treatmentStore
@@ -16,7 +17,7 @@ class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        treatments = treatmentJSONStore(applicationContext)
+        treatments = treatmentFirebaseStore(applicationContext)
         i("Treatment started")
 //        treatments.add(treatmentModel("One", "About one..."))
 //        treatments.add(treatmentModel("Two", "About two..."))

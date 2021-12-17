@@ -10,11 +10,18 @@
         android:title="@string/menu_addTreatment"
         app:showAsAction="always" />
 
+<!--    <item-->
+<!--        android:id="@+id/allmap"-->
+<!--        android:icon="@drawable/ic_baseline_map_24"-->
+<!--        android:title="@string/navDraw"-->
+<!--        app:showAsAction="always" />-->
+
     <item
-        android:id="@+id/allmap"
-        android:icon="@drawable/ic_baseline_map_24"
+        android:id="@+id/item_change_theme"
+        android:icon="@drawable/ic_baseline_change_circle_24"
         android:title="@string/navDraw"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
 
 
 </menu>

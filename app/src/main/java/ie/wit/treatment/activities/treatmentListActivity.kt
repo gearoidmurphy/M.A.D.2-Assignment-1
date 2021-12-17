@@ -7,6 +7,8 @@ import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
@@ -17,6 +19,7 @@ import ie.wit.treatment.databinding.ActivityTreatmentListBinding
 import ie.wit.treatment.databinding.CardTreatmentBinding
 import ie.wit.treatment.main.MainApp
 import ie.wit.treatment.models.Location
+import ie.wit.treatment.models.MyPreferences
 import ie.wit.treatment.models.treatmentModel
 
 
@@ -45,6 +48,7 @@ class treatmentListActivity : AppCompatActivity(), treatmentListener {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        checkTheme()
         navView.setNavigationItemSelectedListener{
             when (it.itemId) {
                 R.id.allmap -> {
@@ -56,6 +60,10 @@ class treatmentListActivity : AppCompatActivity(), treatmentListener {
                 R.id.item_addbtn -> {
                     val launcherIntent = Intent(this, treatmentActivity::class.java)
                     refreshIntentLauncher.launch(launcherIntent)
+                    true
+                }
+                R.id.item_change_theme -> {
+                    chooseThemeDialog()
                     true
                 }
                 else -> {false}
@@ -73,6 +81,7 @@ class treatmentListActivity : AppCompatActivity(), treatmentListener {
         binding.searchBtn.setOnClickListener {
             showtreatments(app.treatments.findByName(binding.searchText.text.toString()))
         }
+
 
         registerRefreshCallback()
     }
@@ -117,6 +126,60 @@ class treatmentListActivity : AppCompatActivity(), treatmentListener {
     fun showtreatments (treatments: List<treatmentModel>) {
         binding.recyclerView.adapter = treatmentAdapter(treatments, this)
         binding.recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+
+    private fun chooseThemeDialog() {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.choose_theme_text))
+        val styles = arrayOf("Light", "Dark", "System default")
+        val checkedItem = MyPreferences(this).darkMode
+
+        builder.setSingleChoiceItems(styles, checkedItem) { dialog, which ->
+
+            when (which) {
+                0 -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    MyPreferences(this).darkMode = 0
+                    delegate.applyDayNight()
+                    dialog.dismiss()
+                }
+                1 -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    MyPreferences(this).darkMode = 1
+                    delegate.applyDayNight()
+                    dialog.dismiss()
+                }
+                2 -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    MyPreferences(this).darkMode = 2
+                    delegate.applyDayNight()
+                    dialog.dismiss()
+                }
+
+            }
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun checkTheme() {
+        when (MyPreferences(this).darkMode) {
+            0 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                delegate.applyDayNight()
+            }
+            1 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
+            }
+            2 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                delegate.applyDayNight()
+            }
+        }
     }
 
 
