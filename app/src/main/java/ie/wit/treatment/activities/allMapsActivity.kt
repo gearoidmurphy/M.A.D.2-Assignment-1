@@ -59,7 +59,9 @@ class allMapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         super.onBackPressed()
     }
 
-    override fun onMarkerClick(p0: Marker?): Boolean {
+
+
+    override fun onMarkerClick(p0: Marker): Boolean {
         TODO("Not yet implemented")
     }
 

@@ -51,12 +51,12 @@ class treatmentListActivity : AppCompatActivity(), treatmentListener {
         checkTheme()
         navView.setNavigationItemSelectedListener{
             when (it.itemId) {
-                R.id.allmap -> {
-                    val location = Location(52.245696, -7.139102, 15f)
-                    val launcherIntent = Intent( this ,allMapsActivity::class.java).putExtra("location", location)
-                    mapIntentLauncher.launch(launcherIntent)
-                    true
-                }
+//                R.id.allmap -> {
+//                    val location = Location(52.245696, -7.139102, 15f)
+//                    val launcherIntent = Intent( this ,allMapsActivity::class.java).putExtra("location", location)
+//                    mapIntentLauncher.launch(launcherIntent)
+//                    true
+//                }
                 R.id.item_addbtn -> {
                     val launcherIntent = Intent(this, treatmentActivity::class.java)
                     refreshIntentLauncher.launch(launcherIntent)

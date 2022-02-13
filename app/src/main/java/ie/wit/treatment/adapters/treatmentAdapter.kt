@@ -35,6 +35,7 @@ class treatmentAdapter constructor(private var treatments: List<treatmentModel>,
             binding.tagNumber.text = treatment.tagNumber.toString()
             binding.treatmentAmount.text = treatment.amount.toString()
             binding.withdrawal.text = treatment.withdarwal.toString()
+            binding.date.text = treatment.date
             Picasso.get().load(treatment.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.ontreatmentClick(treatment) }
 

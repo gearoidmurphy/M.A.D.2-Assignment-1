@@ -26,6 +26,8 @@ import ie.wit.treatment.models.FirebaseUtils
 import ie.wit.treatment.models.Location
 import ie.wit.treatment.models.treatmentModel
 import timber.log.Timber.i
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class treatmentActivity : AppCompatActivity() {
 
@@ -72,6 +74,9 @@ class treatmentActivity : AppCompatActivity() {
         binding = ActivityTreatmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.treatmentAmount.minValue = 1
+        binding.treatmentAmount.maxValue = 1000
+
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
 
@@ -82,8 +87,8 @@ class treatmentActivity : AppCompatActivity() {
             treatment = intent.extras?.getParcelable("treatment_edit")!!
             binding.tagNumber.setText(treatment.tagNumber.toString())
             binding.treatmentName.setText(treatment.treatmentName)
-            binding.treatmentAmount.setText(treatment.amount.toString())
-            binding.withdrawal.setText(treatment.withdarwal.toString())
+            binding.treatmentAmount.value = treatment.amount.toString().toInt()
+            binding.withdrawal.progress = treatment.withdarwal
             binding.btnAdd.setText(R.string.save_treatment)
             Picasso.get()
                 .load(treatment.image)
@@ -97,8 +102,12 @@ class treatmentActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener() {
             treatment.tagNumber = binding.tagNumber.text.toString().toInt()
             treatment.treatmentName = binding.treatmentName.text.toString()
-            treatment.amount = binding.treatmentAmount.text.toString().toInt()
-            treatment.withdarwal = binding.withdrawal.text.toString().toInt()
+            treatment.amount = binding.treatmentAmount.value.toString().toInt()
+            treatment.withdarwal = binding.withdrawal.progress.toString().toInt()
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+            val formatted = current.format(formatter)
+            treatment.date = formatted
             if (treatment.treatmentName.isEmpty()) {
                 Snackbar.make(it,R.string.enter_treatment_title, Snackbar.LENGTH_LONG)
                     .show()
